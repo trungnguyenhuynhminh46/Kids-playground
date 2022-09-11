@@ -1,0 +1,1015 @@
+$color-text-primary: #ffc87a;
+$color-text: #1a2b5f;
+$color-text-gray: #c6cad7;
+html{
+    font-size: 62.5%; //10px
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box; //?
+}
+
+body{
+    font-family: "Poppins", sans-serif;
+    color: $color-text;
+    line-height: 1.4;
+    font-weight: 400;
+}
+
+a{
+    text-decoration: none;
+}
+
+img{
+    display: block;
+    max-width: 100%;
+}
+
+@mixin flex($align: flex-start, $justify: flex-start, $wrap: nowrap, $dir: row){
+    display: flex;
+    align-items: $align;
+    justify-content: $justify;
+    flex-wrap: $wrap;
+    flex-direction: $dir;
+}
+
+@mixin size($width, $height: $width){
+    width: $width;
+    height: $height;
+}
+// 1440px, 1170px
+.wrapper{
+    max-width: 1440px;
+    margin: 0 auto;
+}
+
+.container{
+    max-width: 1210px;
+    padding-left: 2rem;
+    padding-right: 2rem;
+
+    margin: 0 auto;
+}
+
+.header{
+    padding-top: 3rem;
+    &__inner{
+        @include flex(center, space-between);
+    }
+    &__menu{
+        &-list{
+            @include flex(center, flex-end)
+        }
+        &-item{
+            margin-left: 5rem;
+            &:last-child{
+                margin-left: 7rem;
+            }
+        }
+        &-link{
+            font-size: 1.6rem;
+            color: $color-text;
+            transition: color .25s linear, border .25s linear;
+            &:hover{
+                color: $color-text-primary;
+            }
+        }
+    }
+}
+
+.logo{
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: $color-text;
+    &--primary{
+        color: $color-text-primary;
+    }
+}
+
+.btn{
+    cursor: pointer;
+    outline: none;
+    border: none;
+
+    font-size: 1.6rem;
+    text-align: center;
+
+    color: $color-text;
+    background-color: transparent;
+
+    padding: 1rem 3rem;
+    display: inline-block;
+
+    &--border{
+        border: 1px solid currentColor;
+    }
+    &--rounded{
+        border-radius: 3rem;
+    }
+    &--primary{
+        background-color: $color-text-primary;
+        &.has-shadow {
+            box-shadow: 0px 16px 20px 1px #ffeb7a4f;
+        }
+    }
+
+}
+
+.banner{
+    padding-top: 14rem;
+    padding-bottom: 15rem;
+    max-width: 70rem;
+    margin: 0 auto;
+    text-align: center;
+    &__heading{
+        font-size: 6rem;
+        font-weight: 700;
+    }
+    &__desc{
+        font-size: 2rem;
+        font-weight: 300;
+        color: $color-text-gray;
+
+        padding: 3rem 0;
+    }
+    &__buttons {
+        display: flex;
+        justify-content: center;
+        align-items: stretch;
+        .btn{
+            margin: 0 1rem;
+        }
+    }
+}
+
+.category {
+    &__list {
+        @include flex(strech, space-between, wrap);
+    }
+    &__item {
+        // Dàn layout 
+        width: calc(25% - 22.5px);
+        padding: 2.5rem;
+        border-radius: 30px;
+        // Đẩy nút Gluttern Free xuống
+        @include flex(stretch, flex-start,nowrap, column);
+        &:first-child{
+            box-shadow: 0px 16px 20px 20px rgba(255, 151, 195, 8%);
+        }
+        &:nth-child(2){
+            box-shadow: 0px 16px 20px 20px rgba(255, 112, 109, 8%);
+        }
+        &:nth-child(3){
+            box-shadow: 0px 16px 20px 20px rgba(133, 152, 255, 8%);
+        }
+        &:nth-child(4){
+            box-shadow: 0px 16px 20px 20px rgba(255, 200, 122, 8%);
+        }
+    }
+    &__image {
+        // Điều chỉnh cho ảnh k bị dãn
+        border-radius: inherit;
+        object-fit: cover;
+        margin-bottom: 4rem;
+        @include size(100%, 23rem);
+    }
+    &__name, &__details{
+        // Fix 1 dòng
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    &__name {
+        font-size: 2.5rem;
+        margin-bottom: 2.5rem;
+    }
+    &__details {
+        font-size: 1.4rem;
+        color: $color-text-gray;
+        margin-top: auto;
+        i {
+            margin-left: 1.5rem;
+        }
+    }
+}
+
+.feature{
+    padding-top: 2rem;
+    &__item {
+        @include flex(center);
+        margin-top: 15rem;
+        &:nth-child(odd) {
+            .feature__info{
+                padding-left: 10rem;
+            }
+        }
+        &:nth-child(even) {
+            flex-direction: row-reverse;
+            .feature__info{
+                padding-right: 10rem;
+            }
+        }
+    }
+    &__image, &__info {
+        width: 50%;
+    }
+
+    &__image {
+        border-radius: 40px;
+    }
+
+    &__title {
+        font-size: 4rem;
+        font-weight: 600;
+    }
+
+    &__desc {
+        padding-top: 4rem;
+        padding-bottom: 4rem;
+
+        font-size: 1.4rem;
+        color: $color-text-gray;
+    }
+
+    &-intro {
+        &__item {
+            margin-bottom: 3rem;
+            &:nth-child(n) .feature-intro__link--circle::before{
+                background-color: #ffc87a;
+            }
+            &:nth-child(2n) .feature-intro__link--circle::before {
+                background-color: #92fa3c;
+            }
+            &:nth-child(3n) .feature-intro__link--circle::before {
+                background-color: #1ec0f4;
+            }   
+            &:nth-child(4n) .feature-intro__link--circle::before {
+                background-color: #ff899c;
+            }
+        }
+
+        &__link {
+            display: inline-block;
+
+            color: $color-text;
+
+            font-size: 1.4rem;
+            font-weight: 600;
+            text-decoration: underline;
+            &--circle {
+                padding-left: 4rem;
+                text-decoration: none;
+                position: relative;
+                &::before {
+                    content: "";
+                    position: absolute;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    left: 0;
+                    width: 2.4rem;
+                    height: 2.4rem;
+                    border-radius: 50%;
+                    background-color: #ffc87a;
+                }
+            }
+        }
+    }
+
+    &-best {
+        &__list {
+            @include flex(center, space-between, wrap, row);
+            width: 37rem;
+            // Trick bỏ khoảng cách thừa do con tạo ra
+            margin-bottom: -5rem;
+        }
+
+        &__item {
+            width: calc(50% - 28px);
+            margin-bottom: 5rem;
+        }
+
+        &__icon{
+            position: relative;
+
+            @include flex(center, center);
+
+            width: 4.7rem;
+            height: 4.7rem;
+
+            margin-bottom: 1rem;
+
+            border-radius: 4px;
+            font-size: 2.4rem;
+            color: #ffc87a;
+            
+            &--purple{
+                color: purple;
+            }
+
+            &--red{
+                color: red;
+            }
+
+            &--black{
+                color: black;
+            }
+
+            // Trick tạo backgroung theo màu chữ
+            &::after {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: -1;
+
+                width: 100%;
+                height: 100%;
+                // Kế thừa bo góc
+                border-radius: inherit;
+                // Lấy màu chữ hiện tại
+                background-color: currentColor;
+                opacity: 0.25;
+            }
+        }
+
+        &__title {
+            display: block;
+            margin-bottom: 1rem;
+
+            font-size: 1.6rem;
+            font-weight: 600;
+
+            color: $color-text;
+        }
+
+        &_desc {
+            font-weight: 300;
+        }
+    }
+}
+
+// ????????????
+.text-clamp {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    &--2 {
+      -webkit-line-clamp: 2;
+    }
+  }
+////////////////
+
+.partners {
+    &__title {
+        padding-top: 19rem;
+        padding-bottom: 6.5rem;
+
+        font-size: 2.4rem;
+        font-weight: 700;
+        text-align: center;
+    }
+
+    &__list {
+        @include flex(center, space-between, nowrap, row);
+        max-width: 83rem;
+        border-top: 2px solid $color-text;
+
+        margin: 0 auto;
+    }
+
+    &__item {
+        padding-top: 6rem;
+        padding-bottom: 6rem;
+
+    }
+}
+
+.connect {
+    margin-top: 12rem;
+    &__title {
+        font-size: 3.2rem;
+        font-weight: 700;
+        text-align: center;
+
+    }
+
+    &__sub {
+        margin-top: 2rem;
+
+        text-align: center;
+        font-weight: 700;
+        font-size: 2rem;
+        &--primary {
+            color: $color-text-primary;
+        }
+    }
+
+    &-more {
+        &__list {
+            @include flex(center, space-between);
+            margin-top: 5rem;
+        }
+
+        &__item {
+            @include flex(stretch, center);
+            width: calc(25% - 2.25rem);
+        }
+    }
+}
+
+.subscribe {
+    padding-top: 18rem;
+    padding-bottom: 8rem;
+    .container {
+        @include flex(stretch, space-between);
+    }
+    &__left {
+        @include flex(flex-start, flex-start);
+        width: calc(45% - 6.5rem);
+    }
+
+    &__right {
+        @include flex(center, flex-start, nowrap, column);
+        width: calc(55% - 6.5rem);
+    }
+
+    &__title {
+        font-size: 2.4rem;
+        font-weight: 700;
+    }
+    &-search {
+        &__form {
+            @include flex(center, space-between);
+            background-color: #f2f1f6;
+
+            width: 100%;
+        }
+
+        &__input,
+        &__btn {
+            padding-right: 0;
+        }
+
+        &__input {
+            flex-grow: 1;
+            padding: 2.5rem;
+            padding-right: 1rem;
+
+            font-size: 1.4rem;
+            color: $color-text-gray;
+            background: transparent;
+
+            border: 0;
+            outline: none;
+        }
+
+        &__btn {
+            cursor: pointer;
+            padding: 2.5rem;
+            padding-left: 1rem;
+
+            border: none;
+            outline: none;
+
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: $color-text;
+            background-color: transparent;
+        }
+    }
+    &-medias {
+        &__list {
+            @include flex(center, flex-start);
+            width: 100%;
+            padding-top: 4.5rem;
+            padding-left: 3.5rem;
+        }
+
+        &__item {
+            margin-right: 4rem;
+        }
+
+        &__icon {
+            font-size: 2rem;
+            color: $color-text;
+        }
+    }
+}
+
+.footer {
+    &__container {
+        @include flex(stretch, space-between);
+        padding-top: 5.5rem;
+        padding-bottom: 17rem;
+        
+        border-top: 4px solid $color-text;
+    }
+
+    &__item {
+        @include flex(flex-start, flex-start, nowrap, column);
+        width: 25%;
+    }
+
+    &__link {
+        display: inline-block;
+        font-size: 1.4rem;
+        font-weight: 600;
+        color: $color-text;
+
+        margin-bottom: 2.8rem;
+    }
+}
+
+.copyRight {
+    &__container {
+        @include flex(flex-start, space-between);
+        padding-top: 2.6rem;
+        padding-bottom: 2.6rem;
+
+        border-top: 2px solid $color-text-gray;
+    }
+
+    &__left {
+        @include flex(flex-start, space-between);
+        width: 200px;
+    }
+
+    &__item {
+        display: inline-block;
+        font-size: 1.2rem;
+        color: $color-text;
+    }
+}
+// Responsive từng block từ trên xuống cho tất cả các thiết bị
+// Ý tưởng chính là nếu nằm theo hàng thì cho nằm theo cột
+// Hoặc nếu một hàng nhiều phần tử quá thì cho wrap xuống
+@media screen and (max-width: 1024px){
+    .btn{
+        font-size: 1.2rem;
+        padding: 0.7rem 2.3rem;
+    }
+
+    .header{
+        &__menu{
+            &-item{
+                margin-left: 4rem;
+                &:last-child{
+                    margin-left: 6rem;
+                }
+            }
+            &-link{
+                font-size: 1.4rem;
+            }
+        }
+    }
+
+    .banner {
+        padding-top: 5rem;
+        padding-bottom: 5rem;
+        &__heading {
+            font-size: 4rem;
+        }
+    }
+
+    .feature {
+        &__item {
+            margin-top: 10rem;
+            &:nth-child(odd) {
+                .feature__info{
+                    padding-left: 7rem;
+                }
+            }
+            &:nth-child(even) {
+                flex-direction: row-reverse;
+                .feature__info{
+                    padding-right: 7rem;
+                }
+            }
+        }
+        &__title {
+            font-size: 3rem;
+        }
+        &__desc {
+            font-size: 1.2rem;
+        }
+        &-intro {
+            &__link {
+                font-size: 1rem;
+            }
+        }
+        &-best {
+            &__list {
+                width: 35rem;
+                margin-bottom: -5rem;
+            }
+    
+            &__item {
+                width: calc(50% - 28px);
+                margin-bottom: 4rem;
+            }
+    
+            &__icon{
+                width: 4.4rem;
+                height: 4.4rem;
+                font-size: 2.2rem;
+            }
+    
+            &__title {
+                font-size: 1.4rem;
+            }
+        }
+    }
+
+    .partners {
+        &__title {
+            padding-top: 10rem;
+            padding-bottom: 4rem;
+    
+            font-size: 2.2rem;
+        }
+
+        &__item {
+            padding-top: 6rem;
+            padding-bottom: 6rem;
+    
+        }
+    }
+
+    .connect {
+        margin-top: 4rem;
+        &__title {
+            font-size: 2.9rem;
+        }
+    
+        &__sub {
+            font-size: 1.8rem;
+        }
+    }
+
+    .subscribe {
+        padding-top: 13rem;
+        padding-bottom: 7rem;
+
+        &__title {
+            font-size: 2.2rem;
+            font-weight: 700;
+        }
+
+        &-search {
+            &__input {
+                padding: 2.2rem;
+                padding-right: 0.8rem;
+                font-size: 1.2rem;
+            }
+    
+            &__btn {
+                padding: 2.2rem;
+                padding-left: 0.8rem;
+                font-size: 1.3rem;
+            }
+        }
+        &-medias {
+            &__list {
+                padding-top: 4rem;
+                padding-left: 3rem;
+            }
+    
+            &__item {
+                margin-right: 3rem;
+            }
+    
+            &__icon {
+                font-size: 1.5rem;
+            }
+        }
+    }
+
+    .footer {
+        &__container {
+            padding-top: 5rem;
+            padding-bottom: 10rem;
+        }
+    
+        &__link {
+            font-size: 1.2rem;
+        }
+    }
+}
+
+@media screen and (max-width: 801px){
+    .logo{
+        font-size: 2rem;
+    }
+
+    .header__menu-list {
+        display: none;
+    }
+
+    .category {
+        &__list {
+            @include flex(strech, space-around, wrap);
+        }
+        &__item {
+            width: calc(50% - 22.5px);
+            margin-top: 30px;
+        }
+        &__image {
+            // Điều chỉnh cho ảnh k bị dãn
+            border-radius: inherit;
+            object-fit: cover;
+            margin-bottom: 4rem;
+            @include size(100%, 23rem);
+        }
+        &__name, &__details{
+            // Fix 1 dòng
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        &__name {
+            font-size: 2.5rem;
+            margin-bottom: 2.5rem;
+        }
+        &__details {
+            font-size: 1.4rem;
+            color: $color-text-gray;
+            margin-top: auto;
+            i {
+                margin-left: 1.5rem;
+            }
+        }
+    }
+
+    .feature {
+        &-best {
+            &__list {
+                width: 30rem;
+            }
+        }
+    }
+
+    .subscribe {
+        .container {
+            @include flex(stretch, space-around);
+        }
+        &__left {
+            width: calc(45% - 4rem);
+        }
+    
+        &__right {
+            width: calc(55% - 4rem);
+        }
+    }
+}
+
+@media screen and (max-width: 689px){
+    .feature{
+        padding-top: 2rem;
+        &__item {
+            @include flex(center, flex-start, nowrap, column);
+            margin-top: 8rem;
+            &:nth-child(odd) {
+                .feature__info{
+                    padding-left: 0rem;
+                }
+            }
+            &:nth-child(even) {
+                flex-direction: column;
+                .feature__info{
+                    padding-right: 0rem;
+                }
+            }
+        }
+        &__image, &__info {
+            width: 85%;
+        }
+    
+        &__image {
+            @include flex(center, center, nowrap, row);
+            border-radius: 40px;
+        }
+    
+        &__title {
+            font-size: 3rem;
+            font-weight: 600;
+
+            margin-top: 4rem;
+        }
+    
+        &__desc {
+            padding-top: 3rem;
+            padding-bottom: 3rem;
+    
+            font-size: 1.4rem;
+        }
+    
+        &-best {
+            &__list {
+                @include flex(center, space-around, wrap, row);
+                width: 100%;
+                // Trick bỏ khoảng cách thừa do con tạo ra
+                margin-bottom: -5rem;
+                margin-top: 2rem;
+            }
+    
+            &__item {
+                width: calc(50% - 28px);
+                margin-bottom: 5rem;
+            }
+
+            &__title {
+                display: block;
+                margin-bottom: 1rem;
+    
+                font-size: 1.6rem;
+                font-weight: 600;
+    
+                color: $color-text;
+            }
+    
+            &_desc {
+                font-weight: 300;
+            }
+        }
+    }
+    .subscribe {
+        .container {
+            @include flex(stretch, space-around);
+        }
+        &__left {
+            width: calc(45% - 2rem);
+        }
+    
+        &__right {
+            width: calc(55% - 2rem);
+        }
+
+        &__title {
+            font-size: 1.8rem;
+        }
+    }
+}
+
+@media screen and (max-width: 415px){
+    .category {
+        &__item {
+            width: calc(100% - 22.5px);
+        }
+        &__image {
+            margin-bottom: 3rem;
+        }
+        &__name {
+            font-size: 2.2rem;
+            margin-bottom: 2.2rem;
+        }
+        &__details {
+            font-size: 1.2rem;
+        }
+    }
+
+    .partners {
+        &__list {
+            @include flex(flex-start, space-around, wrap, row);
+            max-width: 83rem;
+            border-top: 2px solid $color-text;
+    
+            margin: 0 auto;
+        }
+    
+        &__item {
+            @include flex(center, center);
+            padding-top: 4rem;
+            padding-bottom: 4rem;
+            width: calc(50% - 3rem);
+        }
+    }
+
+    .connect {
+        &__title {
+            font-size: 2.6rem;
+        }
+    
+        &__sub {
+            font-size: 1.6rem;
+        }
+    
+        &-more {
+            &__list {
+                @include flex(flex-start, space-around, wrap, row);
+                margin-top: 2rem;
+            }
+    
+            &__item {
+                @include flex(stretch, center);
+                width: calc(50% - 2rem);
+                margin-top: 2rem;
+            }
+        }
+    }
+
+    .subscribe {
+        padding-top: 8rem;
+        padding-bottom: 8rem;
+        .container {
+            @include flex(center, flex-start, nowrap, column);
+        }
+        &__left {
+            @include flex(flex-start, center);
+            width: 85%;
+        }
+    
+        &__right {
+            @include flex(center, flex-start, nowrap, column);
+            width: 85%;
+            margin-top: 4rem;
+        }
+    
+        &__title {
+            font-size: 2.4rem;
+            font-weight: 700;
+            text-align: center;
+        }
+        &-search {
+            &__input,
+            &__btn {
+                padding-right: 0;
+            }
+    
+            &__input {
+                padding: 1.6rem;
+                padding-right: 1rem;
+    
+                font-size: 1.2rem;
+            }
+    
+            &__btn {
+                padding: 1.6rem;
+                padding-left: 1rem;
+    
+                font-size: 1.2rem;
+            }
+        }
+        &-medias {
+            &__list {
+                @include flex(center, space-around);
+                padding-left: 0;
+            }
+    
+            &__item {
+                margin-right: 0rem;
+            }
+    
+            &__icon {
+                font-size: 1.6rem;
+            }
+        }
+    }
+
+    .footer {
+        &__container {
+            @include flex(center, flex-start, nowrap, column);
+            padding-top: 5rem;
+            padding-bottom: 5rem;
+        }
+    
+        &__item {
+            @include flex(center, flex-start, nowrap, column);
+            width: 85%;
+            &:first-child {
+                margin-bottom: 2rem;
+            }
+        }
+    
+        &__link {
+            display: inline-block;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: $color-text;
+    
+            margin-bottom: 2.8rem;
+        }
+    }
+    
+    .copyRight {
+        &__container {
+            @include flex(stretch, space-between);
+            padding-top: 1.8rem;
+            padding-bottom: 1.8rem;
+        }
+    
+        &__left {
+            @include flex(center, space-between);
+            width: 140px;
+        }
+    
+        &__item {
+            display: inline-block;
+            font-size: 0.8rem;
+            color: $color-text;
+        }
+    }
+}
